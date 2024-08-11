@@ -14,35 +14,39 @@ import {
   Alert,
 } from "react-native";
 
+import { getCurrentUser, signIn } from "../../lib/appwrite";
+import { useGlobalContext } from "@/context/GlobalProvider";
+
+
 const SignIn = () => {
-  // const { setUser, setIsLogged } = useGlobalContext();
+  const { setUser, setIsLogged } = useGlobalContext();
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
-  // const submit = async () => {
-  //   if (form.email === "" || form.password === "") {
-  //     Alert.alert("Error", "Please fill in all fields");
-  //   }
+  const submit = async () => {
+    if (form.email === "" || form.password === "") {
+      Alert.alert("Error", "Please fill in all fields");
+    }
 
-  //   setSubmitting(true);
+    setSubmitting(true);
 
-  //   try {
-  //     await signIn(form.email, form.password);
-  //     const result = await getCurrentUser();
-  //     setUser(result);
-  //     setIsLogged(true);
+    try {
+      await signIn(form.email, form.password);
+      const result = await getCurrentUser();
+      setUser(result);
+      setIsLogged(true);
 
-  //     Alert.alert("Success", "User signed in successfully");
-  //     router.replace("/home");
-  //   } catch (error) {
-  //     Alert.alert("Error", error.message);
-  //   } finally {
-  //     setSubmitting(false);
-  //   }
-  // };
+      Alert.alert("Success", "User signed in successfully");
+      router.replace("/home");
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -80,7 +84,7 @@ const SignIn = () => {
 
           <CustomButton
             title="Sign In"
-            // handlePress={submit}
+            handlePress={submit}
             containerStyles="mt-7"
             isLoading={isSubmitting}
           />

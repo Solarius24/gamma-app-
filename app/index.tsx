@@ -1,4 +1,4 @@
-import { Link, router } from "expo-router";
+import { Link, Redirect, router } from "expo-router";
 import {
   SafeAreaView,
   ScrollView,
@@ -11,7 +11,15 @@ import {
 import { images } from "../constants";
 import React from "react";
 import CustomButton from "@/components/CustomButton";
+import { useGlobalContext } from "@/context/GlobalProvider";
 export default function App() {
+
+const { loading, isLogged } = useGlobalContext();
+
+  if (!loading && isLogged) return <Redirect href="/home" />;
+
+
+
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView
