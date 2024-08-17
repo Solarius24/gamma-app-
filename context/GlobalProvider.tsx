@@ -1,12 +1,13 @@
+// @ts-nocheck
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { getCurrentUser } from "../lib/appwrite";
 
 type GlobalContext = {
   isLogged: boolean;
-  setIsLogged:React.Dispatch<React.SetStateAction<any>>;
+  setIsLogged:React.Dispatch<React.SetStateAction<boolean>>
   user:any,
-  setUser: React.Dispatch<React.SetStateAction<any>>;
+  setUser: React.Dispatch<React.SetStateAction<null>>,
   loading: boolean;
 };
 

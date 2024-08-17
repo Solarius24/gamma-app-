@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Link, Redirect, router } from "expo-router";
 import {
   SafeAreaView,

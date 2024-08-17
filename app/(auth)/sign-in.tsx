@@ -1,22 +1,12 @@
 import { useState } from "react";
-import CustomButton from "@/components/CustomButton";
-import FormField from "@/components/FormField";
-import { images } from "@/constants";
 import { Link, router } from "expo-router";
-import React from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  Dimensions,
-  Image,
-  Alert,
-} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
 
+import { images } from "../../constants";
+import { CustomButton, FormField } from "../../components";
 import { getCurrentUser, signIn } from "../../lib/appwrite";
-import { useGlobalContext } from "@/context/GlobalProvider";
-
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignIn = () => {
   const { setUser, setIsLogged } = useGlobalContext();
@@ -36,6 +26,7 @@ const SignIn = () => {
     try {
       await signIn(form.email, form.password);
       const result = await getCurrentUser();
+      console.log(result)
       setUser(result);
       setIsLogged(true);
 
@@ -58,13 +49,13 @@ const SignIn = () => {
           }}
         >
           <Image
-            source={images.logo02}
+            source={images.logo}
             resizeMode="contain"
-          className="w-[115px] h-[130px]"
+            className="w-[115px] h-[34px]"
           />
 
           <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">
-            Log in to Gamma
+            Log in to Aora
           </Text>
 
           <FormField

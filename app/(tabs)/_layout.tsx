@@ -1,10 +1,12 @@
-import React from "react";
-import { View, Text, Image } from "react-native";
-import { Tabs, Redirect } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { Redirect, Tabs } from "expo-router";
+import { Image, Text, View } from "react-native";
 
 import { icons } from "../../constants";
+import { Loader } from "../../components";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
-const TabIcon = ({ icon, color, focused, name }) => {
+const TabIcon = ({ icon, color, name, focused }) => {
   return (
     <View className="flex items-center justify-center gap-2">
       <Image
@@ -23,7 +25,11 @@ const TabIcon = ({ icon, color, focused, name }) => {
   );
 };
 
-const TabsLayout = () => {
+const TabLayout = () => {
+  const { loading, isLogged } = useGlobalContext();
+
+  if (!loading && !isLogged) return <Redirect href="/sign-in" />;
+
   return (
     <>
       <Tabs
@@ -54,7 +60,7 @@ const TabsLayout = () => {
             ),
           }}
         />
-                <Tabs.Screen
+        <Tabs.Screen
           name="bookmark"
           options={{
             title: "Bookmark",
@@ -63,13 +69,14 @@ const TabsLayout = () => {
               <TabIcon
                 icon={icons.bookmark}
                 color={color}
-                name="Bookamark"
+                name="Bookmark"
                 focused={focused}
               />
             ),
           }}
         />
-                <Tabs.Screen
+
+        <Tabs.Screen
           name="create"
           options={{
             title: "Create",
@@ -84,7 +91,7 @@ const TabsLayout = () => {
             ),
           }}
         />
-                <Tabs.Screen
+        <Tabs.Screen
           name="profile"
           options={{
             title: "Profile",
@@ -100,8 +107,11 @@ const TabsLayout = () => {
           }}
         />
       </Tabs>
+
+      <Loader isLoading={loading} />
+      <StatusBar backgroundColor="#161622" style="light" />
     </>
   );
 };
 
-export default TabsLayout;
+export default TabLayout;

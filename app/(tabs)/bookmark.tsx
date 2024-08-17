@@ -1,12 +1,12 @@
-import React from 'react'
-import { View,Text } from 'react-native'
+import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const Bookmark =() =>  {
+const Bookmark = () => {
   return (
-    <View>
-      <Text>BOOKMARK</Text>
-    </View>
-  )
-}
+    <SafeAreaView className="px-4 my-6 bg-primary h-full">
+      <Text className="text-2xl text-white font-psemibold">Bookmark</Text>
+    </SafeAreaView>
+  );
+};
 
-export default Bookmark
+export default Bookmark;
