@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useState } from "react";
 import { ResizeMode, Video } from "expo-av";
 import { View, Text, TouchableOpacity, Image } from "react-native";
@@ -7,7 +6,6 @@ import { icons } from "../constants";
 
 const VideoCard = ({ title, creator, avatar, thumbnail, video }) => {
   const [play, setPlay] = useState(false);
-
   return (
     <View className="flex flex-col items-center px-4 mb-14">
       <View className="flex flex-row gap-3 items-start">
@@ -42,8 +40,9 @@ const VideoCard = ({ title, creator, avatar, thumbnail, video }) => {
       </View>
 
       {play ? (
+
         <Video
-          source={{ uri: video }}
+          source={{   uri: video}}
           className="w-full h-60 rounded-xl mt-3"
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
@@ -54,6 +53,9 @@ const VideoCard = ({ title, creator, avatar, thumbnail, video }) => {
             }
           }}
         />
+
+
+
       ) : (
         <TouchableOpacity
           activeOpacity={0.7}

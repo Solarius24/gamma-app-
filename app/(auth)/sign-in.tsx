@@ -49,9 +49,9 @@ const SignIn = () => {
           }}
         >
           <Image
-            source={images.logo}
-            resizeMode="contain"
-            className="w-[115px] h-[34px]"
+         source={images.logo02}
+         resizeMode="contain"
+         className="w-[115px] h-[130px]"
           />
 
           <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">

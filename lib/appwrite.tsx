@@ -20,6 +20,8 @@ export const appwriteConfig = {
   storageId: "66b885a5003d308ed751",
 };
 
+
+
 const client = new Client();
 
 client
